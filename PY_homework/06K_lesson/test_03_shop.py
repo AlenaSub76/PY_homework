@@ -22,20 +22,24 @@ def test_sauce_demo_store():
     login_btn.click()
 
     # Ждем загрузки страницы со списком товаров
-    wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "inventory_container")))
+    wait.until(ec.visibility_of_element_located((
+        By.CLASS_NAME, "inventory_container")))
     # Добавить товары в корзину
     items = [("sauce-labs-backpack", "remove-sauce-labs-backpack"),
              ("sauce-labs-bolt-t-shirt", "remove-sauce-labs-bolt-t-shirt"),
              ("sauce-labs-onesie", "remove-sauce-labs-onesie")]
     for add_id, remove_id in items:
         #  Находим кнопку "Add to cart" по динамическому ID и кликаем
-        add_button = wait.until(ec.element_to_be_clickable((By.ID, f"add-to-cart-{add_id}")))
+        add_button = wait.until(ec.element_to_be_clickable((
+            By.ID, f"add-to-cart-{add_id}")))
         add_button.click()
         # Ждем, пока кнопка сменится на "Remove"
-        wait.until(ec.text_to_be_present_in_element((By.ID, remove_id), "Remove"))
+        wait.until(ec.text_to_be_present_in_element((
+            By.ID, remove_id), "Remove"))
 
     # Шаг 4: Перейти в корзину
-    cart_icon = wait.until(ec.element_to_be_clickable((By.CLASS_NAME, "shopping_cart_link")))
+    cart_icon = wait.until(ec.element_to_be_clickable((
+        By.CLASS_NAME, "shopping_cart_link")))
     cart_icon.click()
 
     # Ждем пока загрузится страница корзины
@@ -56,7 +60,8 @@ def test_sauce_demo_store():
     continue_btn.click()
 
     # Ждем загрузки итоговой страницы с итоговой стоимостью Total
-    total_element = wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "summary_total_label")))
+    total_element = wait.until(ec.visibility_of_element_located((
+        By.CLASS_NAME, "summary_total_label")))
     # Прочитать итоговую стоимость
     total_text = total_element.text
     total_value = total_text.replace("Total: $", "")
@@ -65,6 +70,9 @@ def test_sauce_demo_store():
 
     # Проверить, что сумма равна $58.29
     expected_total = "58.29"
-    assert total_value == expected_total, f"Ожидалась сумма ${expected_total}, но получили ${total_value}"
+    assert total_value == expected_total, (
+        f"Ожидалась сумма ${expected_total}, "
+        f"но получили ${total_value}"
+    )
 
     driver.quit()
