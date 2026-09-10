@@ -25,7 +25,7 @@ def test_dynamic_loading():
     driver.save_screenshot("screenshots/page_screen.png")
 
     # 5.Проверьте, что появившийся текст равен "Hello World!"
-    assert hello_element.is_displayed(), "Элемент с текстом 'Hello World!' не отобража-ется"
+    assert hello_element.is_displayed(), "Элемент с текстом 'Hello World!' не отображается"
     assert hello_element.text == "Hello World!", f"Текст элемента не 'Hello World!', а '{hello_element.text}'"
 
     driver.quit()
