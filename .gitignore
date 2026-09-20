@@ -95,3 +95,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.vscode/
+
+# не помню зачем этот файл(((
+test.txt
